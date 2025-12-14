@@ -10,9 +10,13 @@ Graph<T>::Graph(int vertices, bool directed)
 // Add an edge
 template <typename T>
 void Graph<T>::addEdge(int u, int v, T weight) {
-    adjList[u].push_back({v, weight});
+    if (u == v) {
+        return; //no self-edge
+    }
+    
+    adjList[u].add({v, weight});
     if (!directed) {
-        adjList[v].push_back({u, weight});
+        adjList[v].add({u, weight});
     }
 }
 
@@ -27,44 +31,10 @@ template <typename T>
 void Graph<T>::printGraph() const {
     for (int i = 0; i < V; ++i) {
         cout << "Vertex " << i << ": ";
+        vector<pair<int, T>> neighbors = adjList[i].toVector();
         for (const auto& neighbor : adjList[i]) {
             cout << "(" << neighbor.first << ", " << neighbor.second << ") ";
         }
         cout << endl;
     }
 }
-
-// Get neighbors of a vertex
-template <typename T>
-const list<pair<int, T>>& Graph<T>::getNeighbors(int vertex) const {
-    return adjList[vertex];
-}
-
-
-// DFS Traversal (Recursive approach)
-template <typename T>
-void Graph<T>::DFT(int start) const {
-    vector<bool> visited(V, false); // To keep track of visited vertices
-    DFTRecursive(start, visited);
-    cout << endl;
-}
-
-// Utility function for DFS (Recursive)
-template <typename T>
-void Graph<T>::DFTRecursive(int v, vector<bool>& visited) const {
-    visited[v] = true;
-    cout << v << " "; // Visit the current vertex
-
-    // Recur for all the vertices adjacent to this vertex
-    for (const auto& neighbor : adjList[v]) {
-        if (!visited[neighbor.first]) {
-            DFTRecursive(neighbor.first, visited);
-        }
-    }
-}
-
-// -----------------------------------------------------
-// Depth First Search (by username)
-// TO DO 
-// Add DFS implementation 
-// Add DFSRecursive implementation 
