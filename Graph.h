@@ -25,12 +25,12 @@ public:
     void printGraph() const;
     
     // -----------------------------------------------------
-    // Depth First Search (by username)
-    // TO DO 
-    // Add DFS prototype 
-    // Add DFSRecursive prototype
-
+    // Depth First Search
+    void DFS(int startVertex) const;
+    
 private:
+    // DFS Recursive helper function
+    void DFSRecursive(int vertex, vector<bool>& visited) const;
     int V; // Number of vertices
     bool directed; // Whether the graph is directed or undirected
     vector<LinkedBag<pair<int, T>>> adjList; // Adjacency list

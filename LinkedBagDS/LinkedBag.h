@@ -39,7 +39,19 @@ public:
 	int getFrequencyOf(const ItemType& anEntry) const;
 	std::vector<ItemType> toVector() const;
 
+	// Iterator support
+	class Iterator {
+	private:
+		Node<ItemType>* current;
+	public:
+		Iterator(Node<ItemType>* node) : current(node) {}
+		ItemType operator*() const { return current->getItem(); }
+		Iterator& operator++() { current = current->getNext(); return *this; }
+		bool operator!=(const Iterator& other) const { return current != other.current; }
+	};
 
+	Iterator begin() const { return Iterator(headPtr); }
+	Iterator end() const { return Iterator(nullptr); }
 
 }; // end LinkedBag
 

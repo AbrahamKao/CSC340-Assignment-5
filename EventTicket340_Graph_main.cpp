@@ -51,8 +51,22 @@ int main() {
     eventGraph.addEdge(7, 8, w());
     eventGraph.addEdge(8, 9, w());
 
+	// Display all events
+	cout << "\n=== Event Ticket System - All Events ===" << endl;
+	for (size_t i = 0; i < events.size(); ++i) {
+		cout << "Vertex " << i << ":" << endl;
+		cout << events[i] << endl;
+	}
+
 	// Print the adjacency list
+	cout << "\n=== Graph Adjacency List (Vertex: Connected Vertices with Weights) ===" << endl;
 	eventGraph.printGraph();
+    
+	// Perform DFS traversal from different starting vertices
+	cout << "\n=== DFS Traversals ===" << endl;
+	eventGraph.DFS(0);  // Starting from vertex 0
+	eventGraph.DFS(5);  // Starting from vertex 5
+	eventGraph.DFS(9);  // Starting from vertex 9
     
 	return 0;
 }

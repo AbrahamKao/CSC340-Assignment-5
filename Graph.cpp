@@ -38,3 +38,32 @@ void Graph<T>::printGraph() const {
         cout << endl;
     }
 }
+
+// Depth-First Search
+template <typename T>
+void Graph<T>::DFS(int startVertex) const {
+    if (startVertex < 0 || startVertex >= V) {
+        cout << "Invalid start vertex!" << endl;
+        return;
+    }
+    
+    vector<bool> visited(V, false);
+    cout << "DFS Traversal starting from vertex " << startVertex << ": ";
+    DFSRecursive(startVertex, visited);
+    cout << endl;
+}
+
+// DFS Recursive helper function
+template <typename T>
+void Graph<T>::DFSRecursive(int vertex, vector<bool>& visited) const {
+    visited[vertex] = true;
+    cout << vertex << " ";
+    
+    // Visit all unvisited neighbors
+    for (const auto& neighbor : adjList[vertex]) {
+        int neighborVertex = neighbor.first;
+        if (!visited[neighborVertex]) {
+            DFSRecursive(neighborVertex, visited);
+        }
+    }
+}
