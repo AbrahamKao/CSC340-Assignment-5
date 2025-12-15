@@ -1,55 +1,58 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 
 #include "Graph.h"
-#include "LinkedBagDS/LinkedBag.h"
 #include "Event.h"
 
 using namespace std;
 int main() {
+	srand(static_cast<unsigned>(time(nullptr)));
 	// Create a list of Events
 	// Add 10 distinct events to the vector
 	// TO DO 
-
+    vector<Event> events;
+    events.push_back(Event("Concert A", "Live music performance", 4.5, 120));
+    events.push_back(Event("Concert B", "Rock concert night", 4.2, 98));
+    events.push_back(Event("Festival C", "Outdoor music festival", 4.8, 300));
+    events.push_back(Event("Play D", "Stage theater play", 4.0, 75));
+    events.push_back(Event("Show E", "Comedy show", 4.6, 110));
+    events.push_back(Event("Game F", "Sports game", 4.3, 200));
+    events.push_back(Event("Opera G", "Opera performance", 4.7, 60));
+    events.push_back(Event("Expo H", "Technology expo", 4.1, 180));
+    events.push_back(Event("Movie I", "Premiere screening", 4.4, 250));
+    events.push_back(Event("Talk J", "Guest speaker event", 4.9, 90));
 	// Initialize a graph with n vertices (where n is the number of events) 
 	//	 Indicate whether it is directed or undirected 
 	// TO DO 
-
+    Graph<int> eventGraph(static_cast<int>(events.size()), false);
 
 	// Add 15-20 edges (eventA, eventB, weight)
 	// TO DO 
+    auto w = []() { return rand() % 10 + 1; };
+
+	// 16 edges
+    eventGraph.addEdge(0, 1, w());
+    eventGraph.addEdge(0, 2, w());
+    eventGraph.addEdge(0, 9, w());
+    eventGraph.addEdge(1, 3, w());
+    eventGraph.addEdge(1, 4, w());
+    eventGraph.addEdge(2, 5, w());
+    eventGraph.addEdge(2, 6, w());
+    eventGraph.addEdge(2, 8, w());
+    eventGraph.addEdge(3, 7, w());
+    eventGraph.addEdge(3, 5, w());
+    eventGraph.addEdge(4, 6, w());
+    eventGraph.addEdge(4, 8, w());
+    eventGraph.addEdge(5, 9, w());
+    eventGraph.addEdge(6, 7, w());
+    eventGraph.addEdge(7, 8, w());
+    eventGraph.addEdge(8, 9, w());
 
 	// Print the adjacency list
 	eventGraph.printGraph();
-
-	// Depth First traversal should print event information not just indices
-	int start = 0;
-	// Call DFT 
-	// eventGraph.DFT(0, ...);
-
-
-	bool found = false;
-	// Depth First search
-	string eventName1 = ""; //replace with an event name that exists 
-	// Call DFS 
-	// TO DO:  
-	// found = eventGraph.DFS(eventName1, ...);
-	if(found){
-		cout << eventName1 << " has been found in the graph!" << endl;
-	}else{
-		cout << eventName1 << " has not been found in the graph!" << endl;
-	}
-
-	string eventName2 = ""; //replace with an event name that DOES NOT exist 
-	// Call DFS 
-	// TO DO:
-	// found = eventGraph.DFS(eventName2, ...);
-	if(found){
-		cout << eventName2 << " has been found in the graph!" << endl;
-	}else{
-		cout << eventName2 << " has not been found in the graph!" << endl;
-	}
-
+    
 	return 0;
 }
