@@ -32,7 +32,7 @@ void Graph<T>::printGraph() const {
     for (int i = 0; i < V; ++i) {
         cout << "Vertex " << i << ": ";
         vector<pair<int, T>> neighbors = adjList[i].toVector();
-        for (const auto& neighbor : adjList[i]) {
+        for (const auto& neighbor : neighbors) {
             cout << "(" << neighbor.first << ", " << neighbor.second << ") ";
         }
         cout << endl;
@@ -41,7 +41,7 @@ void Graph<T>::printGraph() const {
 
 // Depth-First Search
 template <typename T>
-void Graph<T>::DFS(int startVertex) const {
+void Graph<T>::DFS(int startVertex, const vector<Event>& events) const {
     if (startVertex < 0 || startVertex >= V) {
         cout << "Invalid start vertex!" << endl;
         return;
@@ -55,15 +55,15 @@ void Graph<T>::DFS(int startVertex) const {
 
 // DFS Recursive helper function
 template <typename T>
-void Graph<T>::DFSRecursive(int vertex, vector<bool>& visited) const {
+void Graph<T>::DFSRecursive(int vertex, vector<bool>& visited, const vector<Event>& events) const {
     visited[vertex] = true;
-    cout << vertex << " ";
+    cout << "Vertex " << vertex << ":\n" << events[vertex] << endl;
     
     // Visit all unvisited neighbors
     for (const auto& neighbor : adjList[vertex]) {
         int neighborVertex = neighbor.first;
         if (!visited[neighborVertex]) {
-            DFSRecursive(neighborVertex, visited);
+            DFSRecursive(neighborVertex, visited, events);
         }
     }
 }

@@ -5,6 +5,7 @@
 #include <vector>
 #include <utility>  // For std::pair
 #include "LinkedBagDS/LinkedBag.h"
+#include "Event.h"
 
 using namespace std;
 
@@ -26,11 +27,11 @@ public:
     
     // -----------------------------------------------------
     // Depth First Search
-    void DFS(int startVertex) const;
+    void DFS(int startVertex, const vector<Event>& events) const;
     
 private:
     // DFS Recursive helper function
-    void DFSRecursive(int vertex, vector<bool>& visited) const;
+    void DFSRecursive(int vertex, vector<bool>& visited, const vector<Event>& events) const;
     int V; // Number of vertices
     bool directed; // Whether the graph is directed or undirected
     vector<LinkedBag<pair<int, T>>> adjList; // Adjacency list

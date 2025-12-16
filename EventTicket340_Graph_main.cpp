@@ -64,9 +64,9 @@ int main() {
     
 	// Perform DFS traversal from different starting vertices
 	cout << "\n=== DFS Traversals ===" << endl;
-	eventGraph.DFS(0);  // Starting from vertex 0
-	eventGraph.DFS(5);  // Starting from vertex 5
-	eventGraph.DFS(9);  // Starting from vertex 9
+	eventGraph.DFS(0, events);  // Starting from vertex 0
+	eventGraph.DFS(5, events);  // Starting from vertex 5
+	eventGraph.DFS(9, events);  // Starting from vertex 9
     
 	return 0;
 }
