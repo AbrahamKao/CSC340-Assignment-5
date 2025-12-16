@@ -27,6 +27,7 @@ int main() {
 	// Initialize a graph with n vertices (where n is the number of events) 
 	//	 Indicate whether it is directed or undirected 
 	// TO DO 
+    // undirected graph because purchased toegther is mutual
     Graph<int> eventGraph(static_cast<int>(events.size()), false);
 
 	// Add 15-20 edges (eventA, eventB, weight)

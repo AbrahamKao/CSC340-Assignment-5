@@ -49,7 +49,7 @@ void Graph<T>::DFS(int startVertex, const vector<Event>& events) const {
     
     vector<bool> visited(V, false);
     cout << "DFS Traversal starting from vertex " << startVertex << ": ";
-    DFSRecursive(startVertex, visited);
+    DFSRecursive(startVertex, visited, events);
     cout << endl;
 }
 
